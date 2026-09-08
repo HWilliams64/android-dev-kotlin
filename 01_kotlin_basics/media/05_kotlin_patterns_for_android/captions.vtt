@@ -1,0 +1,345 @@
+WEBVTT
+
+1
+00:00:00.750 --> 00:00:03.375
+Welcome to CSC-244.
+
+2
+00:00:03.625 --> 00:00:08.485
+You’ll pass and invoke a callback, add an extension function, and use apply
+
+3
+00:00:08.485 --> 00:00:11.475
+and let to keep Kotlin object work focused.
+
+4
+00:00:11.725 --> 00:00:15.175
+A callback is an action supplied to another function.
+
+5
+00:00:15.425 --> 00:00:20.323
+An extension gives a type a convenient new calling form without changing its
+
+6
+00:00:20.323 --> 00:00:20.700
+class.
+
+7
+00:00:21.700 --> 00:00:26.110
+These patterns help separate what an app should do from the code that triggers
+
+8
+00:00:26.110 --> 00:00:26.425
+it.
+
+9
+00:00:26.675 --> 00:00:31.434
+They also keep object setup and optional-value handling close to the data
+
+10
+00:00:31.434 --> 00:00:35.400
+involved, making short pieces of app logic easier to read.
+
+11
+00:00:36.400 --> 00:00:38.575
+Imagine you’re building a notes app.
+
+12
+00:00:38.825 --> 00:00:41.450
+A draft has an editable text title.
+
+13
+00:00:41.700 --> 00:00:44.225
+Our sample title is Lab ideas.
+
+14
+00:00:44.475 --> 00:00:49.232
+We want to configure the draft, display a heading when a title is selected,
+
+15
+00:00:49.232 --> 00:00:51.950
+and pass an action that prints a confirmation.
+
+16
+00:00:52.950 --> 00:00:56.750
+We’ll model that action with a function called simulateClick.
+
+17
+00:00:57.000 --> 00:00:59.925
+It invokes the supplied callback immediately.
+
+18
+00:01:00.175 --> 00:01:05.200
+This is a synchronous language example, not an Android screen or event loop.
+
+19
+00:01:05.450 --> 00:01:10.575
+The confirmation is printed text; the script does not save data to storage.
+
+20
+00:01:11.676 --> 00:01:14.051
+Let’s open demo.kts.
+
+21
+00:01:14.301 --> 00:01:19.524
+The standard Run Code button will execute our script with the installed Kotlin
+
+22
+00:01:19.524 --> 00:01:19.926
+compiler.
+
+23
+00:01:20.196 --> 00:01:23.296
+First, give the draft a title we can configure.
+
+24
+00:01:23.546 --> 00:01:28.746
+The constructor property uses var because this draft’s title can be assigned a
+
+25
+00:01:28.746 --> 00:01:29.546
+new value.
+
+26
+00:01:33.725 --> 00:01:37.950
+The title starts as empty text when no argument is supplied.
+
+27
+00:01:38.200 --> 00:01:42.967
+To reuse our heading format, we’ll define a String extension called
+
+28
+00:01:42.967 --> 00:01:43.400
+asNoteHeading.
+
+29
+00:01:48.668 --> 00:01:52.974
+String before the function name identifies the receiver type: the kind of
+
+30
+00:01:52.974 --> 00:01:54.768
+value we call it on.
+
+31
+00:01:55.018 --> 00:01:57.743
+Inside the extension, this is that string.
+
+32
+00:01:57.993 --> 00:02:02.738
+The function returns new text with the Note prefix; it does not change
+
+33
+00:02:02.738 --> 00:02:03.468
+String’s class.
+
+34
+00:02:03.718 --> 00:02:07.893
+For example, calling it on Trip plan returns Note: Trip plan.
+
+35
+00:02:08.146 --> 00:02:12.646
+Now separate triggering an action from choosing what that action does.
+
+36
+00:02:12.896 --> 00:02:16.846
+SimulateClick will accept a function value, then invoke it.
+
+37
+00:02:22.321 --> 00:02:27.374
+The onClick parameter’s function type takes no arguments and returns Unit,
+
+38
+00:02:27.374 --> 00:02:29.671
+meaning no useful result value.
+
+39
+00:02:29.921 --> 00:02:34.546
+Writing the lambda supplies an action; calling onClick actually runs it.
+
+40
+00:02:34.796 --> 00:02:39.996
+Our function makes that call once, immediately, before simulateClick returns.
+
+41
+00:02:40.246 --> 00:02:45.446
+A real event system could retain an action for later, but this model does not.
+
+42
+00:02:45.697 --> 00:02:50.672
+The pieces are ready, so create the draft and configure its title with apply.
+
+43
+00:02:50.922 --> 00:02:56.424
+This scope function groups work around one object and returns that same object
+
+44
+00:02:56.424 --> 00:02:56.847
+afterward.
+
+45
+00:03:06.831 --> 00:03:10.656
+Inside apply, the draft is the receiver, available as this.
+
+46
+00:03:10.906 --> 00:03:14.981
+We can therefore assign title without repeating the object’s name.
+
+47
+00:03:15.231 --> 00:03:18.831
+Draft receives the configured object, not a new copy.
+
+48
+00:03:19.081 --> 00:03:23.874
+SelectedTitle is declared nullable even though this assignment gives it the
+
+49
+00:03:23.874 --> 00:03:25.181
+draft’s actual text.
+
+50
+00:03:25.433 --> 00:03:28.458
+We only want a heading when a selection exists.
+
+51
+00:03:28.708 --> 00:03:32.883
+A safe call to let skips its lambda when selectedTitle is null.
+
+52
+00:03:33.133 --> 00:03:35.758
+Otherwise, let passes the title as it.
+
+53
+00:03:36.008 --> 00:03:40.372
+We’ll print its formatted heading, then supply a separate confirmation
+
+54
+00:03:40.372 --> 00:03:40.808
+callback.
+
+55
+00:03:49.294 --> 00:03:54.232
+Inside let, it names the selected string, so the extension produces the
+
+56
+00:03:54.232 --> 00:03:54.644
+heading.
+
+57
+00:03:54.894 --> 00:04:00.001
+Let returns its lambda’s result; here println returns Unit, which we do not
+
+58
+00:04:00.001 --> 00:04:00.394
+use.
+
+59
+00:04:00.644 --> 00:04:03.044
+Apply returned the draft itself.
+
+60
+00:04:03.294 --> 00:04:08.169
+The last line passes a lambda to simulateClick, whose body invokes it.
+
+61
+00:04:08.419 --> 00:04:12.244
+That action reads draft’s title and prints the confirmation.
+
+62
+00:04:12.496 --> 00:04:15.121
+Trace a different title before our run.
+
+63
+00:04:15.371 --> 00:04:19.071
+Configure a draft as Trip plan and select its title.
+
+64
+00:04:19.321 --> 00:04:23.646
+Let prints Note: Trip plan, then the callback prints Saved: Trip plan.
+
+65
+00:04:23.896 --> 00:04:27.921
+If the selection were null instead, the heading step would be skipped.
+
+66
+00:04:28.171 --> 00:04:32.421
+The separate callback call would still run because it is outside let.
+
+67
+00:04:32.674 --> 00:04:36.474
+Now predict the two lines for our actual Lab ideas draft.
+
+68
+00:04:36.724 --> 00:04:38.974
+Which object does apply return?
+
+69
+00:04:39.224 --> 00:04:43.724
+What does let receive, and which statement invokes the confirmation action?
+
+70
+00:04:43.974 --> 00:04:46.249
+Pause and trace the calls in order.
+
+71
+00:04:52.502 --> 00:04:56.552
+Run the script and compare the actual output with your prediction.
+
+72
+00:05:07.564 --> 00:05:11.939
+Note: Lab ideas comes from the selected title and our extension.
+
+73
+00:05:12.189 --> 00:05:17.139
+Saved: Lab ideas comes from the callback invoked inside simulateClick.
+
+74
+00:05:17.389 --> 00:05:20.214
+The order follows the two calls in the script.
+
+75
+00:05:20.464 --> 00:05:25.656
+Both messages use the configured draft title, and no persistent save has
+
+76
+00:05:25.656 --> 00:05:26.089
+occurred.
+
+77
+00:05:26.344 --> 00:05:30.923
+Apply kept configuration together, the extension reused a heading rule, and
+
+78
+00:05:30.923 --> 00:05:34.669
+the safe call with let handled an optional selection.
+
+79
+00:05:34.919 --> 00:05:39.069
+The callback separated an action from the function that invokes it.
+
+80
+00:05:39.319 --> 00:05:43.369
+These are small, distinct roles you can recognize in app code.
+
+81
+00:05:43.620 --> 00:05:46.220
+Try this pattern with a reminder draft.
+
+82
+00:05:46.470 --> 00:05:51.831
+Configure its title with apply, show a heading only when selected, and pass a
+
+83
+00:05:51.831 --> 00:05:53.745
+callback that prints a confirmation.
+
+84
+00:05:53.995 --> 00:05:56.795
+Test both a present and a null selection.
+
+85
+00:05:57.045 --> 00:06:01.386
+Which output should change, and what proves that passing an action and
+
+86
+00:06:01.386 --> 00:06:03.195
+invoking it are different steps?
