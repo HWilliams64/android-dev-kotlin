@@ -1,0 +1,190 @@
+WEBVTT
+
+1
+00:00:01.500 --> 00:00:07.280
+Welcome to CSC-244, Android Development With Kotlin, taught by Professor Harris
+
+2
+00:00:07.280 --> 00:00:09.340
+Williams at Bunker Hill Community College.
+
+3
+00:00:10.120 --> 00:00:13.180
+You'll turn your programming experience into apps people can use.
+
+4
+00:00:15.050 --> 00:00:18.210
+This course is fully online and asynchronous, with one module every
+
+5
+00:00:18.210 --> 00:00:21.470
+week. You'll build interfaces, connect front ends to back ends, and
+
+6
+00:00:21.470 --> 00:00:24.170
+explore authentication, security, publishing, and monetization.
+
+7
+00:00:24.950 --> 00:00:28.130
+You'll prototype screens for touch and keyboard input, use GET and
+
+8
+00:00:28.130 --> 00:00:32.250
+POST requests, manage permissions, and plan transfers around connectivity and battery
+
+9
+00:00:32.250 --> 00:00:34.250
+life. Here's how your skills will grow.
+
+10
+00:00:36.025 --> 00:00:40.125
+Kotlin Basics introduces decisions, loops, collections, and classes.
+
+11
+00:00:40.945 --> 00:00:43.985
+In Creating Your First App, you'll set up Android Studio and
+
+12
+00:00:43.985 --> 00:00:47.365
+run an app. Working With the UI Editor connects screen controls
+
+13
+00:00:47.365 --> 00:00:48.485
+to your Kotlin code.
+
+14
+00:00:50.400 --> 00:00:55.840
+Next, Activities and Intents covers navigation, lifecycle changes, and Logcat debugging.
+
+15
+00:00:56.680 --> 00:00:59.580
+UI in Depth adds styles, drawables, and animation.
+
+16
+00:01:00.400 --> 00:01:03.640
+Menus and Lists helps you organize actions and repeated items.
+
+17
+00:01:05.550 --> 00:01:09.630
+Saving and Loading Data keeps information available when an app reopens.
+
+18
+00:01:10.550 --> 00:01:13.010
+Background Tasks explores responsive interfaces.
+
+19
+00:01:13.810 --> 00:01:17.690
+Then Volley introduces requests that bring web API data into your
+
+20
+00:01:17.690 --> 00:01:17.890
+app.
+
+21
+00:01:19.700 --> 00:01:24.320
+Notifications helps you create useful alerts, while Camera covers taking and
+
+22
+00:01:24.320 --> 00:01:28.500
+saving photos. In Module 12, Work on the Note-Taking App Project
+
+23
+00:01:28.500 --> 00:01:31.860
+brings your skills together in a Note-Taking App connected to a
+
+24
+00:01:31.860 --> 00:01:32.580
+REST API.
+
+25
+00:01:34.450 --> 00:01:38.990
+Deployment explores publishing and your final-project proposal and prototype in Module
+
+26
+00:01:38.990 --> 00:01:44.310
+13. Beyond Android Studio compares backend services and other mobile approaches.
+
+27
+00:01:44.970 --> 00:01:47.910
+Module 15, Work on the Final Project, gives you room to
+
+28
+00:01:47.910 --> 00:01:50.050
+create an app that solves a problem you choose.
+
+29
+00:01:51.950 --> 00:01:53.410
+So, what does a week look like?
+
+30
+00:01:53.850 --> 00:01:56.610
+Review the slides, watch the videos, read, and practice.
+
+31
+00:01:57.410 --> 00:02:00.390
+Each module has a graded discussion about real-world apps.
+
+32
+00:02:01.050 --> 00:02:04.710
+Assignments are not required for every module; the assigned app mini-projects
+
+33
+00:02:04.710 --> 00:02:05.650
+grow in complexity.
+
+34
+00:02:07.750 --> 00:02:09.230
+Now let's find your materials.
+
+35
+00:02:09.770 --> 00:02:11.970
+In Canvas, select Modules in the course menu.
+
+36
+00:02:12.790 --> 00:02:16.650
+Learning Materials contains your preparation; Deliverables contains the graded work.
+
+37
+00:02:17.090 --> 00:02:21.410
+No textbook is required. Module one uses Jupyter notebooks; other modules
+
+38
+00:02:21.410 --> 00:02:24.150
+list the videos and readings assigned in the course plan.
+
+39
+00:02:26.075 --> 00:02:29.355
+Select Grader Than in the course menu to reach Workspace for
+
+40
+00:02:29.355 --> 00:02:32.175
+basic Kotlin demonstrations and server examples.
+
+41
+00:02:32.915 --> 00:02:36.575
+For general app development, you must install Android Studio on your
+
+42
+00:02:36.575 --> 00:02:41.550
+computer. Your app assignments do not use the Grader Than autograder.
+
+43
+00:02:42.250 --> 00:02:45.450
+Upload a video of yourself using your app to its Canvas
+
+44
+00:02:45.450 --> 00:02:49.330
+assignment. Use feedback to improve it, and resubmit as many times
+
+45
+00:02:49.330 --> 00:02:50.910
+as you like until the end of class.
+
+46
+00:02:51.610 --> 00:02:54.830
+Start early, leave time to test, and ask questions when you're
+
+47
+00:02:54.830 --> 00:02:57.150
+stuck. I look forward to seeing what you create!
+

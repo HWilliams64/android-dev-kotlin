@@ -1,0 +1,334 @@
+WEBVTT
+
+00:00:00.750 --> 00:00:06.268
+Welcome to CSC-244. In this lesson, you’ll declare typed values in Kotlin, build messages
+
+00:00:06.268 --> 00:00:11.392
+with string templates, choose results with conditional expressions, and use ranges and loops
+
+00:00:11.392 --> 00:00:17.698
+to repeat a task. These are Kotlin ways to store information, combine text with values, make
+
+00:00:17.698 --> 00:00:19.275
+decisions, and repeat work.
+
+00:00:20.275 --> 00:00:26.938
+You already know these general ideas from Java or C++. Learning their Kotlin forms will help
+
+00:00:26.938 --> 00:00:33.184
+you write app logic that checks user input, reports useful status, and handles repeated work
+
+00:00:33.184 --> 00:00:33.600
+clearly.
+
+00:00:34.600 --> 00:00:39.573
+Imagine you’re developing an Android notes app. Before building its screens, you need to
+
+00:00:39.573 --> 00:00:45.967
+check the logic that describes a note. Our sample note has the text title Lab ideas and a
+
+00:00:45.967 --> 00:00:50.940
+whole-number revision count. The count records edits and starts at one. We’ll record one
+
+00:00:50.940 --> 00:00:51.650
+additional edit.
+
+00:00:52.650 --> 00:00:57.798
+The program should report whether the title is empty, choose a message for the revision
+
+00:00:57.798 --> 00:01:03.977
+count, and print numbered preview labels. A count of zero means a new note; one means a first
+
+00:01:03.977 --> 00:01:08.782
+revision; larger counts need a different message. We’ll use two preview labels to check
+
+00:01:08.782 --> 00:01:09.125
+repetition.
+
+00:01:10.233 --> 00:01:14.126
+Let’s open demo.kts in the Workspace and build that
+
+00:01:14.126 --> 00:01:14.558
+logic.
+
+00:01:14.808 --> 00:01:17.690
+This Kotlin script can contain statements directly,
+
+00:01:17.690 --> 00:01:20.983
+so we don’t need a Java-style main method.
+
+00:01:21.233 --> 00:01:24.646
+The Run Code button runs this script with the
+
+00:01:24.646 --> 00:01:25.783
+installed Kotlin compiler.
+
+00:01:30.700 --> 00:01:33.766
+First, we need names for the note’s title and its
+
+00:01:33.766 --> 00:01:35.268
+changing revision count.
+
+00:01:35.268 --> 00:01:38.523
+We’ll keep the title binding fixed and let the count
+
+00:01:38.523 --> 00:01:40.400
+change when we record an edit.
+
+00:01:48.965 --> 00:01:51.964
+The val keyword prevents assigning a different value
+
+00:01:51.964 --> 00:01:52.713
+to noteTitle.
+
+00:01:52.713 --> 00:01:55.827
+The var keyword allows revisionCount to be reassigned.
+
+00:01:55.827 --> 00:01:58.768
+Kotlin infers String from the text and Int from the
+
+00:01:58.768 --> 00:02:01.594
+whole number, so the types are still checked even
+
+00:02:01.594 --> 00:02:04.016
+though we haven’t written them explicitly.
+
+00:02:04.016 --> 00:02:06.265
+The update records the additional edit.
+
+00:02:06.966 --> 00:02:10.164
+With the note’s values stored, we need a useful
+
+00:02:10.164 --> 00:02:12.409
+response when its title is empty.
+
+00:02:12.409 --> 00:02:16.015
+An if expression can choose text and supply that text
+
+00:02:16.015 --> 00:02:17.716
+directly to titleMessage.
+
+00:02:27.769 --> 00:02:30.609
+Here, structural equality compares the contents of
+
+00:02:30.609 --> 00:02:33.044
+the title with an empty string.
+
+00:02:33.294 --> 00:02:36.777
+This differs from using double equals to compare
+
+00:02:36.777 --> 00:02:38.519
+object references in Java.
+
+00:02:38.769 --> 00:02:41.836
+For an empty title, the condition is true and the
+
+00:02:41.836 --> 00:02:43.369
+message is Add a title.
+
+00:02:43.619 --> 00:02:46.632
+For the separate example Shopping, the condition is
+
+00:02:46.632 --> 00:02:49.269
+false and the message is Title ready.
+
+00:02:49.519 --> 00:02:52.519
+Only the selected branch supplies the value.
+
+00:02:52.769 --> 00:02:56.144
+This check detects empty text; it doesn’t reject a
+
+00:02:56.144 --> 00:02:58.019
+title made only of spaces.
+
+00:02:58.288 --> 00:03:00.620
+The title check handles two choices.
+
+00:03:00.620 --> 00:03:04.054
+Revision status needs several choices, so we’ll use a
+
+00:03:04.054 --> 00:03:07.488
+when expression to choose one message from the count.
+
+00:03:20.168 --> 00:03:22.020
+Work through two possible counts.
+
+00:03:22.020 --> 00:03:24.939
+With zero, the first branch matches and supplies New
+
+00:03:24.939 --> 00:03:25.219
+note.
+
+00:03:25.219 --> 00:03:28.250
+With one, zero doesn’t match; the next branch supplies
+
+00:03:28.250 --> 00:03:29.092
+First revision.
+
+00:03:29.092 --> 00:03:31.393
+Kotlin selects the first matching branch.
+
+00:03:31.393 --> 00:03:34.311
+The else branch supplies a value when neither listed
+
+00:03:34.311 --> 00:03:35.097
+count matches.
+
+00:03:35.097 --> 00:03:37.791
+That gives revisionMessage one selected message,
+
+00:03:37.791 --> 00:03:39.643
+rather than running every branch.
+
+00:03:39.946 --> 00:03:41.316
+We have the messages.
+
+00:03:41.316 --> 00:03:44.775
+To show the note title beside its title status, we’ll
+
+00:03:44.775 --> 00:03:48.299
+use a string template, which inserts named values into
+
+00:03:48.299 --> 00:03:48.625
+text.
+
+00:03:48.625 --> 00:03:52.084
+Then we’ll print the selected revision message on its
+
+00:03:52.084 --> 00:03:52.671
+own line.
+
+00:03:59.743 --> 00:04:03.240
+The dollar-prefixed names insert their current values
+
+00:04:03.240 --> 00:04:04.758
+into the first message.
+
+00:04:04.758 --> 00:04:07.860
+The colon and space separate the title from its
+
+00:04:07.860 --> 00:04:08.322
+status.
+
+00:04:08.322 --> 00:04:11.687
+Each println call writes a line, making the results
+
+00:04:11.687 --> 00:04:12.743
+easy to inspect.
+
+00:04:13.168 --> 00:04:16.376
+The remaining job is to number the previews without
+
+00:04:16.376 --> 00:04:18.012
+copying a print statement.
+
+00:04:18.012 --> 00:04:20.843
+We’ll visit an integer range with a for loop.
+
+00:04:28.035 --> 00:04:30.055
+The range includes both endpoints.
+
+00:04:30.055 --> 00:04:33.262
+On each visit, previewNumber holds the current number,
+
+00:04:33.262 --> 00:04:36.113
+and the loop body prints that number in a label.
+
+00:04:36.113 --> 00:04:39.024
+For a separate range from three through four, the
+
+00:04:39.024 --> 00:04:41.815
+labels would be Preview three and Preview four.
+
+00:04:41.815 --> 00:04:43.835
+Our range is from one through two.
+
+00:04:44.759 --> 00:04:47.522
+Before we run, predict the revision message.
+
+00:04:47.522 --> 00:04:50.725
+Start with revisionCount’s initial value, apply the
+
+00:04:50.725 --> 00:04:52.986
+update, and trace the when branches.
+
+00:04:52.986 --> 00:04:54.933
+Which message will be selected?
+
+00:04:54.933 --> 00:04:57.634
+Pause the video and explain your reasoning.
+
+00:05:04.314 --> 00:05:07.218
+Let’s run the complete script and compare your
+
+00:05:07.218 --> 00:05:09.364
+prediction with the actual output.
+
+00:05:25.413 --> 00:05:28.522
+The title is Lab ideas, so the empty-title condition
+
+00:05:28.522 --> 00:05:31.392
+is false and the first line reports Title ready.
+
+00:05:31.392 --> 00:05:34.500
+The count starts at one and increases by one, making
+
+00:05:34.500 --> 00:05:34.740
+two.
+
+00:05:34.740 --> 00:05:37.789
+Neither the zero nor the one branch matches, so the
+
+00:05:37.789 --> 00:05:40.180
+else branch supplies Multiple revisions.
+
+00:05:40.180 --> 00:05:43.050
+Finally, the inclusive range visits one and two,
+
+00:05:43.050 --> 00:05:44.963
+producing the two preview lines.
+
+00:05:45.115 --> 00:05:48.219
+We’ve checked the notes app’s language-level logic:
+
+00:05:48.219 --> 00:05:51.445
+typed bindings store its state, string templates make
+
+00:05:51.445 --> 00:05:54.671
+readable messages, conditional expressions select the
+
+00:05:54.671 --> 00:05:57.775
+status, and a range-driven loop repeats the preview
+
+00:05:57.775 --> 00:05:58.201
+action.
+
+00:05:58.201 --> 00:06:01.366
+The printed result lets us verify those rules before
+
+00:06:01.366 --> 00:06:02.340
+adding a screen.
+
+00:06:02.517 --> 00:06:05.269
+Now transfer this pattern to a reminder-status
+
+00:06:05.269 --> 00:06:05.748
+program.
+
+00:06:05.748 --> 00:06:08.440
+Create a title, an editable reminder count, a
+
+00:06:08.440 --> 00:06:11.013
+conditional message, and numbered previews.
+
+00:06:11.013 --> 00:06:13.346
+Test zero, one, and multiple reminders.
+
+00:06:13.346 --> 00:06:16.517
+Which binding should stay fixed, which should change,
+
+00:06:16.517 --> 00:06:19.508
+and what output would convince you that every case
+
+00:06:19.508 --> 00:06:19.867
+works?

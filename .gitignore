@@ -1,0 +1,15 @@
+# Local credentials
+.env
+.env.*
+!.env.example
+*.env
+
+# Notebook and Python caches
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local operating system files
+.DS_Store
+Thumbs.db

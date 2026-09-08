@@ -1,0 +1,377 @@
+WEBVTT
+
+1
+00:00:00.750 --> 00:00:03.375
+Welcome to CSC-244.
+
+2
+00:00:03.625 --> 00:00:08.212
+In this lesson, you’ll write reusable Kotlin functions, supply default and
+
+3
+00:00:08.212 --> 00:00:13.216
+named arguments, and handle missing text with nullable types, safe calls, and
+
+4
+00:00:13.216 --> 00:00:14.050
+a fallback.
+
+5
+00:00:14.300 --> 00:00:17.350
+A function gives a useful operation a name.
+
+6
+00:00:17.600 --> 00:00:21.800
+Null safety makes the possibility of missing data explicit.
+
+7
+00:00:22.800 --> 00:00:27.745
+These skills let you centralize app rules instead of repeating them in every
+
+8
+00:00:27.745 --> 00:00:28.125
+screen.
+
+9
+00:00:28.375 --> 00:00:33.246
+They also help you decide what users should see when information is
+
+10
+00:00:33.246 --> 00:00:36.900
+unavailable, before a missing value becomes a runtime error.
+
+11
+00:00:37.900 --> 00:00:41.375
+Imagine you’re building the header for an Android notes app.
+
+12
+00:00:41.625 --> 00:00:45.175
+The header needs a display name and a note-count label.
+
+13
+00:00:45.425 --> 00:00:48.100
+A supplied name should appear in uppercase.
+
+14
+00:00:48.350 --> 00:00:51.125
+A missing name needs a readable fallback.
+
+15
+00:00:51.375 --> 00:00:55.974
+Our sample calls use the name Sam, a missing name with a caller-selected
+
+16
+00:00:55.974 --> 00:00:58.450
+fallback, and a count of three notes.
+
+17
+00:00:59.450 --> 00:01:03.959
+We’ll put each formatting rule in a small function and print the returned text
+
+18
+00:01:03.959 --> 00:01:04.925
+to check it.
+
+19
+00:01:05.175 --> 00:01:09.375
+Present text, missing text, and empty text are different cases.
+
+20
+00:01:09.625 --> 00:01:14.004
+We’ll work through those differences before predicting the result of our
+
+21
+00:01:14.004 --> 00:01:14.800
+sample calls.
+
+22
+00:01:15.902 --> 00:01:20.152
+Let’s open demo.kts and build these formatting functions.
+
+23
+00:01:20.402 --> 00:01:25.579
+The standard Run Code button will execute the script with the installed Kotlin
+
+24
+00:01:25.579 --> 00:01:25.977
+compiler.
+
+25
+00:01:26.229 --> 00:01:30.479
+First, several parts of the app could need the same display-name rule.
+
+26
+00:01:30.729 --> 00:01:35.705
+We’ll give that rule one function, called displayName, so callers provide data
+
+27
+00:01:35.705 --> 00:01:37.779
+instead of copying the decision.
+
+28
+00:01:45.737 --> 00:01:48.512
+The fun keyword introduces the function.
+
+29
+00:01:48.762 --> 00:01:53.887
+Its name parameter has a nullable String type, so it can hold text or null.
+
+30
+00:01:54.137 --> 00:01:56.412
+Null means no value is present.
+
+31
+00:01:56.662 --> 00:02:01.937
+The fallback parameter is ordinary non-null text, with Guest as its default.
+
+32
+00:02:02.187 --> 00:02:06.287
+The return type promises that callers receive a non-null String.
+
+33
+00:02:06.537 --> 00:02:12.234
+A default is used when the caller omits that argument; it does not replace
+
+34
+00:02:12.234 --> 00:02:13.862
+every null argument automatically.
+
+35
+00:02:14.226 --> 00:02:18.809
+Inside the function, we need to uppercase a name only when it exists, and
+
+36
+00:02:18.809 --> 00:02:21.101
+still return text when it does not.
+
+37
+00:02:21.351 --> 00:02:26.395
+A safe call lets us ask for the uppercase form without trying to call a method
+
+38
+00:02:26.395 --> 00:02:27.026
+on null.
+
+39
+00:02:31.486 --> 00:02:36.522
+When name contains text, the safe call runs uppercase and produces the
+
+40
+00:02:36.522 --> 00:02:37.361
+converted text.
+
+41
+00:02:37.611 --> 00:02:41.186
+When name is null, it skips that call and produces null.
+
+42
+00:02:41.436 --> 00:02:46.499
+The Elvis operator then chooses fallback only if the value on its left is
+
+43
+00:02:46.499 --> 00:02:46.861
+null.
+
+44
+00:02:47.111 --> 00:02:50.911
+The return keyword sends the chosen text back to the caller.
+
+45
+00:02:51.162 --> 00:02:53.437
+Work through a separate name, Riley.
+
+46
+00:02:53.687 --> 00:02:58.187
+The safe call produces uppercase RILEY, so the fallback is unused.
+
+47
+00:02:58.437 --> 00:03:03.411
+If the name is missing and the caller omits fallback, the safe call produces
+
+48
+00:03:03.411 --> 00:03:05.187
+null and Guest is returned.
+
+49
+00:03:05.437 --> 00:03:10.766
+An empty string is still a String, so its uppercase form stays empty and the
+
+50
+00:03:10.766 --> 00:03:12.187
+fallback is not selected.
+
+51
+00:03:12.437 --> 00:03:15.687
+Missing text and empty text need different rules.
+
+52
+00:03:15.939 --> 00:03:20.435
+We could force a nullable value with a non-null assertion, often called double
+
+53
+00:03:20.435 --> 00:03:24.239
+bang, but that would throw an error for a missing name.
+
+54
+00:03:24.489 --> 00:03:28.739
+Our safe call and fallback express the behavior we want instead.
+
+55
+00:03:28.989 --> 00:03:34.426
+We can reuse this function without asking every caller to repeat the same null
+
+56
+00:03:34.426 --> 00:03:34.814
+handling.
+
+57
+00:03:35.066 --> 00:03:37.766
+The header also needs a note-count label.
+
+58
+00:03:38.016 --> 00:03:43.131
+That rule only builds one string, so we can write an expression-bodied
+
+59
+00:03:43.131 --> 00:03:46.541
+function: its single expression supplies the returned value.
+
+60
+00:03:50.595 --> 00:03:52.820
+The count parameter is an Int.
+
+61
+00:03:53.070 --> 00:03:58.020
+Kotlin infers that the string-template expression returns a String, so this
+
+62
+00:03:58.020 --> 00:04:01.170
+short form needs no explicit return keyword.
+
+63
+00:04:01.420 --> 00:04:05.070
+With a separate count of four, the result would be four notes.
+
+64
+00:04:05.320 --> 00:04:10.497
+This simple rule always uses the word notes; it does not handle singular
+
+65
+00:04:10.497 --> 00:04:10.895
+grammar.
+
+66
+00:04:11.146 --> 00:04:13.071
+Both functions are ready.
+
+67
+00:04:13.321 --> 00:04:17.471
+Let’s add the three sample calls and print the values they return.
+
+68
+00:04:17.721 --> 00:04:22.885
+Named arguments identify which parameter each value belongs to, making the
+
+69
+00:04:22.885 --> 00:04:26.171
+missing-name test and its chosen fallback clear.
+
+70
+00:04:36.168 --> 00:04:40.118
+The first call supplies Sam and leaves fallback at its default.
+
+71
+00:04:40.368 --> 00:04:45.118
+The second explicitly supplies null for name and Visitor for fallback.
+
+72
+00:04:45.368 --> 00:04:49.493
+The last supplies the integer three to the count-label function.
+
+73
+00:04:49.743 --> 00:04:52.843
+Before we run, predict the second printed line.
+
+74
+00:04:53.093 --> 00:04:58.661
+Trace the safe call first, then decide whether the Elvis operator uses its
+
+75
+00:04:58.661 --> 00:04:59.518
+right-hand value.
+
+76
+00:04:59.768 --> 00:05:02.193
+Why should that line match your prediction?
+
+77
+00:05:02.443 --> 00:05:04.643
+Pause and explain your reasoning.
+
+78
+00:05:10.937 --> 00:05:15.187
+Now run the script and compare the three actual lines with your trace.
+
+79
+00:05:24.672 --> 00:05:28.597
+The first line is SAM in uppercase because its name exists.
+
+80
+00:05:28.847 --> 00:05:34.152
+The second is Visitor: the safe call was skipped for null, and the explicitly
+
+81
+00:05:34.152 --> 00:05:36.047
+supplied fallback became the result.
+
+82
+00:05:36.297 --> 00:05:39.472
+The default Guest did not replace the caller’s choice.
+
+83
+00:05:39.722 --> 00:05:44.372
+The final line is three notes, built by the count function’s string template.
+
+84
+00:05:44.624 --> 00:05:49.224
+We’ve separated the header’s formatting rules from the places that call them.
+
+85
+00:05:49.474 --> 00:05:54.221
+Function parameters carry the inputs, return values carry the results, and
+
+86
+00:05:54.221 --> 00:05:57.674
+safe calls with a fallback handle absent names.
+
+87
+00:05:57.924 --> 00:06:02.874
+The actual output confirms the present-name and missing-name paths in this
+
+88
+00:06:02.874 --> 00:06:03.774
+small example.
+
+89
+00:06:04.031 --> 00:06:09.324
+Now write a similar function for an optional note title with a caller-chosen
+
+90
+00:06:09.324 --> 00:06:09.731
+fallback.
+
+91
+00:06:09.981 --> 00:06:13.231
+Test a present title, null, and an empty string.
+
+92
+00:06:13.481 --> 00:06:18.203
+Explain why the empty case differs from null, and decide whether your app
+
+93
+00:06:18.203 --> 00:06:19.656
+should treat it differently.
+
+94
+00:06:19.906 --> 00:06:23.656
+What returned values would convince you that each rule works?
